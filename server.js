@@ -13,15 +13,16 @@ const passport = require('passport');
 // console.log(jimmy); // Stewart - the variable name is jimmy, not james
 // console.log(bobby); // De Niro - the variable name is bobby, not robert
 const { router: usersRouter } = require('./users');
-const { router: customersRouter } = require('./customers');
+//const { router: customersRouter } = require('./customers');
 const { router: authRouter, localStrategy, jwtStrategy } = require('./auth');
-
+const { Customer } = require('./customers/models');
 mongoose.Promise = global.Promise;
 
 const { PORT, DATABASE_URL } = require('./config');
 
 const app = express();
 
+app.use(express.json());
 // Logging
 app.use(morgan('common'));
 app.use(express.static('public'));
@@ -41,7 +42,7 @@ passport.use(jwtStrategy);
 
 app.use('/api/users/', usersRouter);
 app.use('/api/auth/', authRouter);
-app.use('/api/customers/', customersRouter);
+//app.use('/api/customers/', customersRouter);
 
 const jwtAuth = passport.authenticate('jwt', { session: false });
 
@@ -50,6 +51,30 @@ app.get('/api/protected', jwtAuth, (req, res) => {
   return res.json({
     data: "You've gained access"
   });
+});
+
+app.post('/api/customers', (req, res) => {
+  const requiredFields = ['contactInfo', 'vehicleInfo', 'description'];
+  for (let i = 0; i < requiredFields.length; i++) {
+    const field = requiredFields[i];
+    if (!(field in req.body)) {
+      const message = `Missing \`${field}\` in request body`;
+      console.error(message);
+      return res.status(400).send(message);
+    }
+  }
+
+  Customer
+    .create({
+      contactInfo: req.body.contactInfo,
+      vehicleInfo: req.body.vehicleInfo,
+      description: req.body.description
+    })
+    .then(customer => res.status(201).json(customer.serialize()))
+    .catch(err => {
+      console.error(err);
+      res.status(500).json({ error: 'Something went wrong' });
+    });
 });
 
 app.use('*', (req, res) => {

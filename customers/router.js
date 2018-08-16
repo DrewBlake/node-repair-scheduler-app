@@ -1,4 +1,4 @@
-'use strict';
+/*'use strict';
 const express = require('express');
 const bodyParser = require('body-parser');
 
@@ -8,7 +8,7 @@ const router = express.Router();
 
 const jsonParser = bodyParser.json();
 
-app.post('/', jsonParser, (req, res) => {
+router.post('/', jsonParser, (req, res) => {
   const requiredFields = ['contactInfo', 'vehicleInfo', 'description'];
   for (let i = 0; i < requiredFields.length; i++) {
     const field = requiredFields[i];
@@ -32,3 +32,4 @@ app.post('/', jsonParser, (req, res) => {
     });
 });
 
+*/
