@@ -53,7 +53,7 @@ app.get('/api/protected', jwtAuth, (req, res) => {
   });
 });
 
-app.post('/api/customers', (req, res) => {
+app.post('/customers', (req, res) => {
   const requiredFields = ['contactInfo', 'vehicleInfo', 'description'];
   for (let i = 0; i < requiredFields.length; i++) {
     const field = requiredFields[i];

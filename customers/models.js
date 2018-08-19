@@ -5,7 +5,7 @@ mongoose.Promise = global.Promise;
 
 const CustomerSchema = mongoose.Schema({
   contactInfo: {
-    phoneNumber: Number,
+    phoneNumber: String,
     email: String
   },
   vehicleInfo: {
@@ -17,7 +17,7 @@ const CustomerSchema = mongoose.Schema({
 });
 
 CustomerSchema.virtual('contact').get(function() {
-  return `phone # ${this.contactInfo.phoneNumber} email ${this.contactInfo.email}`;
+  return `phone #: ${this.contactInfo.phoneNumber} email: ${this.contactInfo.email}`;
 });
 
 CustomerSchema.virtual('vehicle').get(function() {

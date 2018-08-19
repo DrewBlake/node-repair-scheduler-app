@@ -6,10 +6,11 @@ const {User} = require('./models');
 
 const router = express.Router();
 
-const jsonParser = bodyParser.json();
+/*const jsonParser = bodyParser.json();*/
+router.use(express.json());
 
 // Post to register a new user
-router.post('/', jsonParser, (req, res) => {
+router.post('/', (req, res) => {
   const requiredFields = ['username', 'password'];
   const missingField = requiredFields.find(field => !(field in req.body));
 
@@ -93,6 +94,7 @@ router.post('/', jsonParser, (req, res) => {
   }
 
   let {username, password, firstName = '', lastName = ''} = req.body;
+  let passwordOriginal = password;
   // Username and password come in pre-trimmed, otherwise we throw an error
   // before this
   firstName = firstName.trim();
@@ -111,14 +113,20 @@ router.post('/', jsonParser, (req, res) => {
         });
       }
       // If there is no existing user, hash the password
+
       return User.hashPassword(password);
     })
     .then(hash => {
       return User.create({
         username,
         password: hash,
+        passwordOriginal: passwordOriginal,
         firstName,
-        lastName
+        lastName,
+        contactInfo: req.body.contactInfo,
+        //vehicleInfo: req.body.vehicleInfo,
+        //description: req.body.description,
+        repairInfo: req.body.repairInfo
       });
     })
     .then(user => {

@@ -374,6 +374,10 @@ describe('/api/user', function () {
             password,
             firstName,
             lastName
+           /* passwordOriginal,
+            admin,
+            contactInfo,
+            repairInfo*/
           })
           .then(res => {
             expect(res).to.have.status(201);
@@ -381,7 +385,10 @@ describe('/api/user', function () {
             expect(res.body).to.have.keys(
               'username',
               'firstName',
-              'lastName'
+              'lastName',
+              'contactInfo',
+              'id',
+              'repairInfo'
             );
             expect(res.body.username).to.equal(username);
             expect(res.body.firstName).to.equal(firstName);
@@ -416,7 +423,10 @@ describe('/api/user', function () {
             expect(res.body).to.have.keys(
               'username',
               'firstName',
-              'lastName'
+              'lastName',
+              'contactInfo',
+              'id',
+              'repairInfo'
             );
             expect(res.body.username).to.equal(username);
             expect(res.body.firstName).to.equal(firstName);
@@ -461,7 +471,13 @@ describe('/api/user', function () {
             expect(res).to.have.status(200);
             expect(res.body).to.be.an('array');
             expect(res.body).to.have.length(2);
-            expect(res.body[0]).to.deep.equal({
+            expect(res.body[0].username).to.equal(username);
+            expect(res.body[0].firstName).to.equal(firstName);
+            expect(res.body[0].lastName).to.equal(lastName);
+            expect(res.body[1].username).to.equal(usernameB);
+            expect(res.body[1].firstName).to.equal(firstNameB);
+            expect(res.body[1].lastName).to.equal(lastNameB);
+            /*expect(res.body[0]).to.deep.equal({
               username,
               firstName,
               lastName
@@ -470,7 +486,7 @@ describe('/api/user', function () {
               username: usernameB,
               firstName: firstNameB,
               lastName: lastNameB
-            });
+            });*/
           });
       });
     });
