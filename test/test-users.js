@@ -484,8 +484,7 @@ describe('/api/user', function () {
             });
             expect(res.body[1]).to.deep.equal({
               username: usernameB,
-              firstName: firstNameB,
-              lastName: lastNameB
+              firstName: firstNameB
             });*/
           });
       });
