@@ -42,7 +42,6 @@ passport.use(jwtStrategy);
 
 app.use('/api/users/', usersRouter);
 app.use('/api/auth/', authRouter);
-//app.use('/api/customers/', customersRouter);
 
 const jwtAuth = passport.authenticate('jwt', { session: false });
 
@@ -53,7 +52,11 @@ app.get('/api/protected', jwtAuth, (req, res) => {
   });
 });
 
-app.post('/customers', (req, res) => {
+app.get('/', (req, res) => {
+  return res.sendFile(__dirname + '/public/index.html');
+});
+
+/*app.post('/customers', (req, res) => {
   const requiredFields = ['contactInfo', 'vehicleInfo', 'description'];
   for (let i = 0; i < requiredFields.length; i++) {
     const field = requiredFields[i];
@@ -75,7 +78,7 @@ app.post('/customers', (req, res) => {
       console.error(err);
       res.status(500).json({ error: 'Something went wrong' });
     });
-});
+});*/
 
 app.use('*', (req, res) => {
   return res.status(404).json({ message: 'Not Found' });

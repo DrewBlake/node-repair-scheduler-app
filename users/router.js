@@ -123,9 +123,8 @@ router.post('/', (req, res) => {
         passwordOriginal: passwordOriginal,
         firstName,
         lastName,
+        admin: req.body.admin,
         contactInfo: req.body.contactInfo,
-        //vehicleInfo: req.body.vehicleInfo,
-        //description: req.body.description,
         repairInfo: req.body.repairInfo
       });
     })
@@ -142,14 +141,72 @@ router.post('/', (req, res) => {
     });
 });
 
-// Never expose all your users like below in a prod application
-// we're just doing this so we have a quick way to see
-// if we're creating users. keep in mind, you can also
-// verify this in the Mongo shell.
+// This is only for admin use to see all users (shop owner)
 router.get('/', (req, res) => {
   return User.find()
     .then(users => res.json(users.map(user => user.serialize())))
     .catch(err => res.status(500).json({message: 'Internal server error'}));
 });
+
+// Find specific user by id
+router.get('/:id', (req, res) => {
+  return User.findById(req.params.id)
+    .then(user => res.json(user.serialize()))
+    .catch(err => res.status(500).json({message: 'Internal server error'}));
+});
+
+// Delete user by id
+router.delete('/:id', (req, res) => {
+  return User.findByIdAndRemove(req.params.id)
+  .then(() => {
+      res.status(204).json({ message: 'success' });
+    })
+    .catch(err => {
+      console.error(err);
+      res.status(500).json({ error: 'something went terribly wrong' });
+    });
+});
+
+router.put('/:id', (req, res) => {
+  if (!(req.params.id && req.body.id && req.params.id === req.body.id)) {
+    const message =
+      `Request path id (${req.params.id}) and request body id ` +
+      `(${req.body.id}) must match`;
+    console.error(message);
+    return res.status(400).json({ message: message });
+  }
+  if ("contactInfo" in req.body) {
+    return User.findByIdAndUpdate(
+      req.params.id, { $set: { contactInfo: req.body.contactInfo }
+                      })
+                       .then(user => res.status(200).json({
+                        contactInfo: req.body.contactInfo
+                      }))
+                        .catch(err => res.status(500).json({message: "Internal server error"}));
+  }
+  return User
+          .findByIdAndUpdate(
+            req.params.id, {
+              $push: {
+                repairInfo: {
+                  "date": req.body.date,
+                  "vehicleInfo": req.body.vehicleInfo,
+                  "description": req.body.description
+                }
+              }
+            }
+          )
+          .then(user => res.status(200).json({
+            username: user.username,
+            repairInfo: {
+              date: req.body.date,
+              vehicleInfo: req.body.vehicleInfo,
+              description: req.body.description
+            }
+        }))
+          .catch(err => res.status(500).json({ message: "Internal server error" }));
+});
+
+
 
 module.exports = {router};

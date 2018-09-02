@@ -4,6 +4,15 @@ const mongoose = require('mongoose');
 
 mongoose.Promise = global.Promise;
 
+/*const repairInfoSchema = mongoose.Schema({ 
+  date: String,
+    vehicleInfo: {
+      year: Number,
+      make: String,
+      model: String
+    },
+    description: String});*/
+
 const UserSchema = mongoose.Schema({
   username: {
     type: String,
@@ -25,7 +34,7 @@ const UserSchema = mongoose.Schema({
     email: String
   },
   repairInfo: [{
-    date: String,
+    date: {type: Date, default: Date.now},
     vehicleInfo: {
       year: Number,
       make: String,
@@ -39,13 +48,13 @@ UserSchema.virtual('contact').get(function() {
   return `phone #: ${this.contactInfo.phoneNumber} email: ${this.contactInfo.email}`;
 });
 
-/*UserSchema.virtual('vehicle').get(function() {
+UserSchema.virtual('vehicle').get(function() {
   return `${this.vehicleInfo.year} ${this.vehicleInfo.make} ${this.vehicleInfo.model}`;
 });
 
 UserSchema.virtual('repairHistory').get(function() {
-  return `${this.repairInfo.date} ${this.repairInfo.description}`
-});*/
+  return `${this.repairInfo[0].date} ${this.repairInfo[0].description}`
+});
 
 UserSchema.methods.serialize = function() {
   return {
