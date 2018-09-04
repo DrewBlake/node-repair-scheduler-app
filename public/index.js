@@ -92,12 +92,21 @@ function handleSubmitButtonClick() {
 		$('#phone').val('');
 		$('#username').val('');
 		$('#password').val('');
-		console.log(firstName);
-		console.log(lastName);
-		console.log(email);
-		console.log(phoneNumber);
-		console.log(username);
-		console.log(password);
+		const userData = {
+			username: username,
+			firstName: firstName,
+			lastName: lastName,
+			password: password,
+			contactInfo: {
+				phoneNumber: phoneNumber,
+				email: email
+			}
+		}
+		console.log(userData);
+		postDataToUserApi(userData, displayUserData);
+		$('.js-user-list').show();
+		$('.js-sign-up-form').hide();
+		$('.js-sign-up').show();
 	});
 }
 
