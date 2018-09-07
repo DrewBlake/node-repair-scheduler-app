@@ -10,15 +10,21 @@
 		<main>
 			<h1 role='banner'>Auto Repair Scheduler</h1>
 			<button type="submit" class="js-sign-up">Sign Up</button>
-			<div id="js-user-form"></div>
+			<button type="submit" class="js-sign-in">Sign In</button>
 			<button type="submit" class="js-search-all-users">Search All users</button>
+			<div id="js-user-form" aria-live="assertive"></div>
+			<div id="js-user-in-form" aria-live="assertive"></div>
+			
 			<button type="submit" class="js-back">Back</button>
 			<div class="js-user-list" aria-live="assertive"></div>
+			<div class="js-sign-up-list" aria-live="assertive"></div>
+			<div class="js-sign-in-error" aria-live="assertive"></div>
 			
 		</main>
 		
 		<script src="https://code.jquery.com/jquery-2.2.4.min.js"
 	      crossorigin="anonymous"></script>
+	    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
 
 	    <script src="index.js"></script>
 
