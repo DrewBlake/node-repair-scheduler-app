@@ -63,6 +63,7 @@ UserSchema.methods.serialize = function() {
     firstName: this.firstName || '',
     lastName: this.lastName || '',
     id: this._id,
+    admin: this.admin,
     contactInfo: this.contact || '',
     /*vehicleInfo: this.vehicle || '',*/
     repairInfo: this.repairInfo

@@ -3,8 +3,10 @@ const express = require('express');
 const bodyParser = require('body-parser');
 
 const {User} = require('./models');
-
+const passport = require('passport');
 const router = express.Router();
+const jwtAuth = passport.authenticate('jwt', { session: false });
+
 
 /*const jsonParser = bodyParser.json();*/
 router.use(express.json());
@@ -142,21 +144,21 @@ router.post('/', (req, res) => {
 });
 
 // This is only for admin use to see all users (shop owner)
-router.get('/', (req, res) => {
+router.get('/', jwtAuth, (req, res) => {
   return User.find()
     .then(users => res.json(users.map(user => user.serialize())))
     .catch(err => res.status(500).json({message: 'Internal server error'}));
 });
 
 // Find specific user by id
-router.get('/:id', (req, res) => {
+router.get('/:id', jwtAuth, (req, res) => {
   return User.findById(req.params.id)
     .then(user => res.json(user.serialize()))
     .catch(err => res.status(500).json({message: 'Internal server error'}));
 });
 
 // Delete user by id
-router.delete('/:id', (req, res) => {
+router.delete('/:id', jwtAuth, (req, res) => {
   return User.findByIdAndRemove(req.params.id)
   .then(() => {
       res.status(204).json({ message: 'success' });
@@ -167,7 +169,7 @@ router.delete('/:id', (req, res) => {
     });
 });
 
-router.put('/:id', (req, res) => {
+router.put('/:id', jwtAuth, (req, res) => {
   if (!(req.params.id && req.body.id && req.params.id === req.body.id)) {
     const message =
       `Request path id (${req.params.id}) and request body id ` +
