@@ -8,20 +8,27 @@
 	</head>
 	<body>
 		<main>
-			<h1 role='banner'>Auto Repair Scheduler</h1>
-			<button type="submit" class="js-sign-up">Sign Up</button>
-			<button type="submit" class="js-sign-in">Sign In</button>
-			<button type="submit" class="js-search-all-users">Search All users</button>
-			<button type="submit" class="js-schedule-button">Schedule Appt</button>
-			<button type="submit" class="js-repair-history">Show repair history</button>
-			<button type="submit" class="js-delete-user">Delete your account</button>
-			<div id="js-form" aria-live="assertive"></div>
-			<div class="js-info-list" aria-live="assertive"></div>
-			<div class="js-error" aria-live="assertive"></div>
-			<div class="js-confirm" aria-live="assertive"></div>
-			<button type="submit" class="js-back">Back</button>
-			<button type="submit" class="js-sign-in-back">Back</button>
-			<button type="submit" class="js-logout">Logout</button>
+			<h1 role='banner' class="title">Auto Repair Scheduler</h1>
+			<h2 class="description">Create an account that allows you to schedule your vehicle for repair.  View your schedule history, update or delete your account.</h2>
+			<div class="home-buttons">
+				<button type="submit" class="js-sign-up sign-button">Sign Up</button>
+				<button type="submit" class="js-sign-in sign-button">Sign In</button>
+			</div>
+			<ul class="js-button-list button-list">
+				<li><button type="submit" class="js-search-all-users list-button">Search All users</button></li>
+				<li><button type="submit" class="js-repair-history list-button">Show repair schedule</button></li>
+				<li><button type="submit" class="js-schedule-button list-button">Schedule Appt</button></li>
+				<li><button type="submit" class="js-update-contact list-button">Update Contact Info</button>
+				<li><button type="submit" class="js-delete-user list-button">Delete your account</button></li>
+				<li><button type="submit" class="js-logout list-button">Logout</button></li>
+			</ul>
+			<div id="js-form" class="form" aria-live="assertive"></div>
+			<div class="js-info-list list" aria-live="assertive"></div>
+			<div class="js-error message" aria-live="assertive"></div>
+			<div class="js-confirm message" aria-live="assertive"></div>
+			<button type="submit" class="js-back back-button">Back</button>
+			<button type="submit" class="js-sign-in-back back-button">Back</button>
+			
 		</main>
 		
 		<script src="https://code.jquery.com/jquery-2.2.4.min.js"

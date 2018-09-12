@@ -96,25 +96,27 @@ function deleteDataFromUserAPI(callback) {
 }
 
 function displayConfirmDelete() {
-	$('.js-schedule-button').hide();
-	$('.js-delete-user').hide();
+	$('.js-button-list').hide();
+	$('#js-form').hide();
+	//$('.js-schedule-button').hide();
+	//$('.js-delete-user').hide();
 	$('.js-sign-in-back').hide();
-	$('.js-logout').hide();
-	$('.js-repair-history').hide();
+	//$('.js-logout').hide();
+	//$('.js-repair-history').hide();
 	$('.js-info-list').hide();
 	$('.js-back').show();
 	$('.js-confirm').show();
-	$('.js-confirm').html('<h2>Your account has been deleted</h2>');
+	$('.js-confirm').html('<h3>Your account has been deleted</h3>');
 }
 
 function displayUserIdData(data) {
 	let repairList = '';
 	console.log('display id data');
-	repairList = `<ul> Customer: ${data.firstName} ${data.lastName}'s repair History
-		<br>Contact Info: ${data.contactInfo}</br></ul>`;
+	repairList = `<ul><h3> Customer ${data.firstName} ${data.lastName}'s Repair Schedule History:
+		<br>Contact Info: ${data.contactInfo}</br><h3></ul>`;
 	console.log(data.repairInfo.length);
 	for (let i = 0; i < data.repairInfo.length; i++) {
-		repairList += `<li>${data.repairInfo[i].description} - Scheduled repair date: 
+		repairList += `<li>Vehicle complaint: ${data.repairInfo[i].description} - Scheduled repair date: 
 		${moment(data.repairInfo[i].date).format('MMM Do YYYY')}</li>`;
 	}
 	$('.js-info-list').html(repairList);
@@ -129,10 +131,10 @@ function displayUserData(data) {
 	console.log(data.length);
 	for(let j = 0; j < data.length; j++) {
 		
-		repairList += `<ul> Customer: ${data[j].firstName} ${data[j].lastName}'s 
-						Repair History <br>Contact Info: ${data[j].contactInfo}</br></ul>`;
+		repairList += `<ul><h3> Customer ${data[j].firstName} ${data[j].lastName}'s 
+						Repair Schedule History: <br>Contact Info: ${data[j].contactInfo}</br><h3></ul>`;
 		for (let i = 0; i < data[j].repairInfo.length; i++) {
-			repairList += `<li>${data[j].repairInfo[i].description} - 
+			repairList += `<li>Vehicle complaint: ${data[j].repairInfo[i].description} - 
 							Scheduled repair date: ${moment(data[j].repairInfo[i].date).format('MMM Do YYYY')}</li>`;	
 		}
 		$('.js-info-list').html(`${repairList}`);		
@@ -144,39 +146,40 @@ function handleLogin(data) {
 	token = data.authToken;
 	userId = data.user.id;
 	admin = data.user.admin;
+	$('.js-search-all-users').hide();
 	if (admin) {
 		$('.js-search-all-users').show();
 	}
 	console.log(data.user.admin);
 	$('#js-form').hide();
 	$('.js-back').hide();
-	$('.js-delete-user').show();
-	$('.js-logout').show();
-	$('.js-schedule-button').show();
-	$('.js-repair-history').show();
+	$('.js-button-list').show();
 }
 
 function displaySignUpData(data) {
 	$('.js-form').hide();
-	let customerInfo = `<h2>Sign up successful! Your user name is: ${data.username}
-		and your contact info is: ${data.contactInfo}</h2>`;
+	let customerInfo = `<h3>Sign up successful! Your user name is: ${data.username}
+		and your contact info is: ${data.contactInfo}</h3>`;
 	$('.js-info-list').show();
 	$('.js-info-list').html(customerInfo);
 }
 
 function displayRepairScheduleInfo(data) {
 	$('.js-confirm').show();
-	$('.js-confirm').html(`<h2>${data.repairInfo.description}</h2>`);
+	$('.js-confirm').html(`<h3>You have scheduled 
+		your vehicle for repair on: ${moment(data.repairInfo.date).format('MMM Do YYYY')}, 
+		with a complaint of: ${data.repairInfo.description}.</h3>`);
 }
 
 function displayNewContactInfo(data) {
 	$('.js-confirm').show();
-	$('.js-confirm').html(`<h2>Your new username is: ${data.contactInfo.userName}.
-		Your new email is: ${data.contactInfo.email}.`);
+	$('.js-confirm').html(`<h3>Your new phone number is: ${data.contactInfo.phoneNumber}.
+		Your new email is: ${data.contactInfo.email}.</h3>`);
 }
 
 function renderSignUpForm() {
 	return `
+		<h2>Create A New User Account</h2>
 		<form class="js-sign-up-form">
 			<fieldset name="contact-info">
 				<legend><h2>Contact Info</h2></legend>
@@ -200,12 +203,13 @@ function renderSignUpForm() {
 		        <label for="password">Password</label>
 		        <input type="text" id="password" placeholder="Password" required>
 		    </fieldset>
-		    <button type="submit">Submit</button>
+		    <button type="submit" class="submit-button">Submit</button>
 	    </form>`;
 }
 
 function renderSignInForm() {
 	return `
+		<h2>Sign Into Your Account</h2>
 		<form class="js-sign-in-form">
 			<fieldset name="User Info">
 		    	<legend><h2>User Info</h2></legend>
@@ -215,12 +219,13 @@ function renderSignInForm() {
 		        <label for="passwordIn">Password</label>
 		        <input type="text" id="passwordIn" placeholder="Password" required>
 		    </fieldset>
-		    <button type="submit">Submit</button>
+		    <button type="submit" class="submit-button">Submit</button>
 		</form>`;
 }
 
 function renderScheduleForm() {
 	return `
+		<h2>Schedule A New Appointment</h2>
 		<form class="js-schedule-form">
 			<fieldset name="Repair Info">			
 				<legend><h2>Repair Info</h2></legend>
@@ -241,22 +246,22 @@ function renderScheduleForm() {
 				<input type="text" id="model" required>
 				<br>	
 			</fieldset>
-			<button type="submit">Submit</button>
+			<button type="submit" class="submit-button">Submit</button>
 		</form>`;
 }
 
 function renderContactForm() {
 	return `
-		<form class=".js-contact-form">
+		<form class="js-contact-form">
 			<fieldset name="contact-info">
-				<legend><h2>Contact Info</h2></legend>
+				<legend><h2>Update Contact Info</h2></legend>
 		        <label for="emailNew">Email</label>
 		        <input type="email" id="emailNew" placeholder="your@email.com">
 		        <br>
 		        <label for="phoneNew">Phone #</label>
 		        <input type="tel" pattern="[0-9/-]*" id="phoneNew" placeholder="444-444-4444" required>  
 		    </fieldset>
-		    <button type="submit">Submit</button>
+		    <button type="submit" class="submit-button">Submit</button>
 	    </form>`;
 }
 
@@ -355,10 +360,11 @@ function handleScheduleSubmitClick() {
 function handleUpdateContactSubmit() {
 	$('.js-contact-form').submit(function(event) {
 		event.preventDefault();
-		const phoneNumber = $('#phoneNumber').val();
-		const email = $('#email').val();
-		$('#phoneNumber').val('');
-		$('#email').val('');
+		const phoneNumber = $('#phoneNew').val();
+		const email = $('#emailNew').val();
+		console.log(email);
+		$('#phoneNew').val('');
+		$('#emailNew').val('');
 		const userData = {
 			id: userId,
 			contactInfo: {
@@ -370,10 +376,22 @@ function handleUpdateContactSubmit() {
 	});
 }
 
+function handleUpdateButtonClick() {
+	$('.js-update-contact').on('click', function(event) {
+		console.log('update contact click');
+		$('.js-button-list').hide();
+		$('#js-form').show();
+		$('.js-sign-in-back').show();
+		displayContactForm();
+		handleUpdateContactSubmit();
+	});
+}
+
 function handleScheduleButtonClick() {
 	$('.js-schedule-button').on('click', function(event) {
 		console.log('schedule button click');
-		$('.js-schedule-button').hide();
+		//$('.js-schedule-button').hide();
+		$('.js-button-list').hide();
 		$('#js-form').show();
 		$('.js-sign-in-back').show();
 		displayScheduleForm();
@@ -383,6 +401,7 @@ function handleScheduleButtonClick() {
 
 function handleDeleteUserButtonClick() {
 	$('.js-delete-user').on('click', function(event) {
+
 		if (confirm("Are you sure you want to delete your account?")) {
 			deleteDataFromUserAPI(displayConfirmDelete);
 		}
@@ -395,13 +414,15 @@ function handleLogoutButtonClick() {
 			$('.js-sign-up').show();
 			$('.js-sign-in').show();
 			$('#js-form').hide();
-			$('.js-logout').hide();
-			$('.js-schedule-button').hide();
-			$('.js-search-all-users').hide();
+			$('.js-button-list').hide();
+			$('.js-confirm').hide();
+			//$('.js-logout').hide();
+			//$('.js-schedule-button').hide();
+			//$('.js-search-all-users').hide();
 			$('.js-sign-in-back').hide();
 			$('.js-info-list').hide();
-			$('.js-repair-history').hide();
-			$('.js-delete-user').hide();
+			//$('.js-repair-history').hide();
+			//$('.js-delete-user').hide();
 		};
 	});
 }
@@ -410,30 +431,31 @@ function handleSignBackButtonClick() {
 	$('.js-sign-in-back').on('click', function(event) {
 		$('.js-sign-in-back').hide();
 		$('#js-form').hide();
-		$('.js-schedule-button').show();
+		//$('.js-schedule-button').show();
 		$('.js-info-list').hide();
 		$('.js-confirm').hide();
-		$('.js-repair-history').show();
-		if (admin) {
-			$('.js-search-all-users').show();
-		}
+		$('.js-button-list').show();
+		//$('.js-repair-history').show();
+		//if (admin) {
+		//	$('.js-search-all-users').show();
+		//}
 	});
 }
 
 function handleBackButtonClick() {
 	$('.js-back').on('click', function(event) {
-		
+		$('.js-button-list').hide();
 		console.log('back pressed');
 		$('.js-sign-up').show();
 		$('.js-sign-in').show();
 		$('.js-info-list').hide();
 		$('#js-form').hide();
 		$('.js-back').hide();
-		$('.js-schedule-button').hide();
+		//$('.js-schedule-button').hide();
 		$('.js-error').hide();
-		$('.js-search-all-users').hide();
-		$('.js-logout').hide();
-		$('.js-delete-user').hide();
+		//$('.js-search-all-users').hide();
+		//$('.js-logout').hide();
+		//$('.js-delete-user').hide();
 		$('.js-confirm').hide();
 
 	});
@@ -443,7 +465,9 @@ function handleSearchUsersButton() {
 	$('.js-search-all-users').on('click', function(event) {
 		console.log('hello2');
 		getDataFromUserAPI(displayUserData);
-		$('.js-search-all-users').hide();
+		//$('.js-search-all-users').hide();
+		$('.js-button-list').hide();
+		$('.js-confirm').hide();
 		$('.js-sign-in-back').show();
 		$('.js-info-list').show();
 	});
@@ -452,7 +476,9 @@ function handleSearchUsersButton() {
 function handleSearchUserIdButton() {
 	$('.js-repair-history').on('click', function(event) {
 		getDataFromUserIdAPI(displayUserIdData);
-		$('.js-repair-history').hide();
+		//$('.js-repair-history').hide();
+		$('.js-button-list').hide();
+		$('.js-confirm').hide();
 		$('.js-sign-in-back').show();
 		$('.js-info-list').show();
 	});
@@ -483,17 +509,19 @@ function handleSignUpButtonClick() {
 }
 
 function hideButtons() {
-	$('.js-delete-user').hide();
+	$('.js-button-list').hide();
+	//$('.js-delete-user').hide();
 	$('.js-back').hide();
 	$('.js-sign-in-back').hide();
-	$('.js-schedule-button').hide();
-	$('.js-logout').hide();
-	$('.js-search-all-users').hide();
-	$('.js-repair-history').hide();
+	//$('.js-schedule-button').hide();
+	//$('.js-logout').hide();
+	//$('.js-search-all-users').hide();
+	//$('.js-repair-history').hide();
 }
 
 function runApp() {
 	hideButtons();
+	handleUpdateButtonClick();
 	handleScheduleButtonClick();
 	handleSignInButtonClick();
 	handleSignUpButtonClick();

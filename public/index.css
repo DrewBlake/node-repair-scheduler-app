@@ -1,0 +1,136 @@
+* {
+	box-sizing: border-box;
+	font-family: sans-serif;
+}
+
+main {
+  height: 100%; 
+}
+
+body {
+  background: url(https://images.freeimages.com/images/large-previews/d0c/roadside-assistance-required-1240071.jpg) 
+  no-repeat center center fixed; 
+  /*background-color: rgba(88,3,3);*/
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;  
+  min-height: 100%;
+  height: 100%; 
+  margin: 0;
+  padding: 0;
+}
+
+.title, .description {
+  width: 75%;
+  text-align: center;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.home-buttons {
+  width: 170px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.back-button:hover, .submit-button:hover, .list-button:hover {
+  color: black;
+  background-color: rgba(178, 130, 25, 0.89);
+}
+
+.sign-button {
+  font-size: 20px;
+  color: black;
+  background-color: rgba(178, 130, 25, 0.89);
+  width: 200px;
+  height: 45px;
+  border-radius: 5px;
+  font-weight: 600;
+  margin: 5px;
+}
+
+.sign-button:hover {
+  color: white;
+  background-color: rgba(89, 65, 12, 0.89);
+}
+
+button {
+  font-size: 20px;
+  color: white;
+  background-color: rgba(44, 32, 6, 0.89);
+  width: 300px;
+  height: 60px;
+  border-radius: 5px;
+  font-weight: 600;
+  margin: 10px;
+}
+
+.back-button {
+  margin-left: 40%;
+  width: 200px;
+  height: 40px;
+}
+
+.submit-button {
+  color: black;
+  margin-left: 15px;
+  width: 150px;
+  height: 30px;
+  font-weight: 600;
+  border-radius: 5px;
+  background-color: white;
+}
+
+.form {
+  width: 60%;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: rgba(44, 32, 6, 0.89);
+  color: white;
+  padding: 20px;
+  border-radius: 7px;
+}
+
+.button-list {
+  list-style: none;
+  width: 420px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+input, label{
+  display: block;
+  font-size: 20px;  
+}
+
+input {
+  height: 35px;
+  border-radius: 3px;
+}
+
+fieldset {
+  /*padding: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  */
+  border: none;
+}
+
+.message, .list {
+  width: 60%;
+  font-size: 25px;
+  color: white;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: rgba(44, 32, 6, 0.89);
+  border-radius: 5px;
+}
+
+.list {
+  width: 80%;
+  font-size: 20px;
+  list-style: none;
+  padding: 20px;
+}
