@@ -390,7 +390,6 @@ function handleUpdateButtonClick() {
 function handleScheduleButtonClick() {
 	$('.js-schedule-button').on('click', function(event) {
 		console.log('schedule button click');
-		//$('.js-schedule-button').hide();
 		$('.js-button-list').hide();
 		$('#js-form').show();
 		$('.js-sign-in-back').show();
@@ -416,13 +415,8 @@ function handleLogoutButtonClick() {
 			$('#js-form').hide();
 			$('.js-button-list').hide();
 			$('.js-confirm').hide();
-			//$('.js-logout').hide();
-			//$('.js-schedule-button').hide();
-			//$('.js-search-all-users').hide();
 			$('.js-sign-in-back').hide();
 			$('.js-info-list').hide();
-			//$('.js-repair-history').hide();
-			//$('.js-delete-user').hide();
 		};
 	});
 }
@@ -431,14 +425,9 @@ function handleSignBackButtonClick() {
 	$('.js-sign-in-back').on('click', function(event) {
 		$('.js-sign-in-back').hide();
 		$('#js-form').hide();
-		//$('.js-schedule-button').show();
 		$('.js-info-list').hide();
 		$('.js-confirm').hide();
 		$('.js-button-list').show();
-		//$('.js-repair-history').show();
-		//if (admin) {
-		//	$('.js-search-all-users').show();
-		//}
 	});
 }
 
@@ -451,11 +440,7 @@ function handleBackButtonClick() {
 		$('.js-info-list').hide();
 		$('#js-form').hide();
 		$('.js-back').hide();
-		//$('.js-schedule-button').hide();
 		$('.js-error').hide();
-		//$('.js-search-all-users').hide();
-		//$('.js-logout').hide();
-		//$('.js-delete-user').hide();
 		$('.js-confirm').hide();
 
 	});
@@ -465,7 +450,6 @@ function handleSearchUsersButton() {
 	$('.js-search-all-users').on('click', function(event) {
 		console.log('hello2');
 		getDataFromUserAPI(displayUserData);
-		//$('.js-search-all-users').hide();
 		$('.js-button-list').hide();
 		$('.js-confirm').hide();
 		$('.js-sign-in-back').show();
@@ -476,7 +460,6 @@ function handleSearchUsersButton() {
 function handleSearchUserIdButton() {
 	$('.js-repair-history').on('click', function(event) {
 		getDataFromUserIdAPI(displayUserIdData);
-		//$('.js-repair-history').hide();
 		$('.js-button-list').hide();
 		$('.js-confirm').hide();
 		$('.js-sign-in-back').show();
@@ -510,13 +493,8 @@ function handleSignUpButtonClick() {
 
 function hideButtons() {
 	$('.js-button-list').hide();
-	//$('.js-delete-user').hide();
 	$('.js-back').hide();
 	$('.js-sign-in-back').hide();
-	//$('.js-schedule-button').hide();
-	//$('.js-logout').hide();
-	//$('.js-search-all-users').hide();
-	//$('.js-repair-history').hide();
 }
 
 function runApp() {
