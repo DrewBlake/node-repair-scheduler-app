@@ -181,17 +181,17 @@ fieldset {
       width: 150px;
     }
 
-    .back-button {
-      margin-left: 25%;
-      width: 130px;
+    .back-button, .submit-button {
+      font-size: 15px;  
+      width: 120px;
     }
 
-    .submit-button {
-      width: 130px;
+    .back-button {
+      margin-left: 25%;
     }
 
     .form {
-      padding: 10px;
+      padding: 5px;
     }
 
     .title {

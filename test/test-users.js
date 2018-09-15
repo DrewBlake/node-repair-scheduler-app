@@ -470,16 +470,17 @@ describe('/api/user', function () {
             expect(res.body[1].username).to.equal(usernameB);
             expect(res.body[1].firstName).to.equal(firstNameB);
             expect(res.body[1].lastName).to.equal(lastNameB);
-            /*expect(res.body[0]).to.deep.equal({
-              username,
-              firstName,
-              lastName
-            });
-            expect(res.body[1]).to.deep.equal({
-              username: usernameB,
-              firstName: firstNameB
-            });*/
           });
+      });
+    });
+
+    describe('GET with :id', function() {
+      it('Should return an empty object initially', function() {
+        return chai.request(app).get('api/users/:id').then(res=> {
+          expect(res).to.have.status(200);
+          expect(res.body).to.be.an('object');
+          expect(res.body).to.equal({});
+        });
       });
     });
   });

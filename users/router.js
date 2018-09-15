@@ -8,7 +8,6 @@ const router = express.Router();
 const jwtAuth = passport.authenticate('jwt', { session: false });
 
 
-/*const jsonParser = bodyParser.json();*/
 router.use(express.json());
 
 // Post to register a new user
@@ -169,6 +168,8 @@ router.delete('/:id', jwtAuth, (req, res) => {
     });
 });
 
+//This will update user contact info if contactInfo object supplied,
+//It will add repair info to array of repairInfo if supplied.
 router.put('/:id', jwtAuth, (req, res) => {
   if (!(req.params.id && req.body.id && req.params.id === req.body.id)) {
     const message =
