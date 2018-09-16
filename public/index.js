@@ -492,6 +492,8 @@ function handleSignUpButtonClick() {
 }
 
 function hideButtons() {
+	$('#js-form').hide();
+	$('.js-info-list').hide();
 	$('.js-button-list').hide();
 	$('.js-back').hide();
 	$('.js-sign-in-back').hide();

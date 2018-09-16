@@ -165,16 +165,30 @@ fieldset {
   }
 
   .back-button {
-    margin-left: 30%;
+    margin-left: 35%;
     width: 150px;
   }
+
+  .home-buttons {
+      margin-left: 30%;
+    }
 
   .submit-button {
     width: 150px;
   }
+
+  .list-button {
+    width: 300px;
+  }
 }
 
 @media only screen and (max-width: 500px) {
+
+    .list-button {
+      
+      width: 220px;
+      font-size: 15px;
+    }
 
     input {
       height: 30px;
@@ -187,7 +201,11 @@ fieldset {
     }
 
     .back-button {
-      margin-left: 25%;
+      margin-left: 30%;
+    }
+
+    .home-buttons {
+      margin-left: 18%;
     }
 
     .form {
@@ -204,10 +222,18 @@ fieldset {
 
     h3 {
       font-size: 18px;
+      text-align: left;
+    }
+
+    .button-list {
+      width: 250px;
+      margin-left: 5px;
     }
 
     .list {
       font-size: 13px;
+      padding: 15px;
+      
     }
 }
   

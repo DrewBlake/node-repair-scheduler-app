@@ -370,12 +370,16 @@ describe('/api/user', function () {
             username,
             password,
             firstName,
-            lastName
+            lastName,
+            //contactInfo,
+            //id,
+            //repairInfo
           })
           .then(res => {
             expect(res).to.have.status(201);
             expect(res.body).to.be.an('object');
             expect(res.body).to.have.keys(
+              'admin',
               'username',
               'firstName',
               'lastName',
@@ -414,6 +418,7 @@ describe('/api/user', function () {
             expect(res).to.have.status(201);
             expect(res.body).to.be.an('object');
             expect(res.body).to.have.keys(
+              'admin',
               'username',
               'firstName',
               'lastName',
@@ -475,13 +480,20 @@ describe('/api/user', function () {
     });
 
     describe('GET with :id', function() {
-      it('Should return an empty object initially', function() {
-        return chai.request(app).get('api/users/:id').then(res=> {
-          expect(res).to.have.status(200);
-          expect(res.body).to.be.an('object');
-          expect(res.body).to.equal({});
-        });
+      it('Should return user with id', function() {
+        chai.request(app).get('api/users').then(res=>{
+          console.log(res);
+          let id = res.body[0].id;
+          return chai.request(app).get(`api/users/${id}`).then(res2=> {
+          expect(res2).to.have.status(200);
+          expect(res2.body).to.be.an('object');
+          expect(res2.body[0].username).to.equal(username);
+          });
+        });        
       });
     });
+
+    describe('');
+
   });
 });
