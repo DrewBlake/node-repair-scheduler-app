@@ -7,7 +7,7 @@ main {
   height: 100%; 
 }
 
-body {
+html {
   background: url(https://images.freeimages.com/images/large-previews/d0c/roadside-assistance-required-1240071.jpg) 
   no-repeat center center fixed; 
   -webkit-background-size: cover;
