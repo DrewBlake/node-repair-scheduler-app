@@ -221,18 +221,18 @@ fieldset {
     }
 
     h3 {
-      font-size: 18px;
+      font-size: 12px;
       text-align: left;
     }
 
     .button-list {
       width: 250px;
-      margin-left: 5px;
+      margin-left: 0px;
     }
 
     .list {
       font-size: 13px;
-      padding: 15px;
+      padding: 5px;
       
     }
 }

@@ -98,11 +98,9 @@ function deleteDataFromUserAPI(callback) {
 function displayConfirmDelete() {
 	$('.js-button-list').hide();
 	$('#js-form').hide();
-	//$('.js-schedule-button').hide();
-	//$('.js-delete-user').hide();
+	
 	$('.js-sign-in-back').hide();
-	//$('.js-logout').hide();
-	//$('.js-repair-history').hide();
+	
 	$('.js-info-list').hide();
 	$('.js-back').show();
 	$('.js-confirm').show();
@@ -113,7 +111,7 @@ function displayUserIdData(data) {
 	let repairList = '';
 	console.log('display id data');
 	repairList = `<ul><h3> Customer ${data.firstName} ${data.lastName}'s Repair Schedule History:
-		<br>Contact Info: ${data.contactInfo}</br><h3></ul>`;
+		Contact Info: ${data.contactInfo}<h3></ul>`;
 	console.log(data.repairInfo.length);
 	for (let i = 0; i < data.repairInfo.length; i++) {
 		repairList += `<li>Vehicle complaint: ${data.repairInfo[i].description} - Scheduled repair date: 
