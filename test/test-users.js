@@ -29,7 +29,7 @@ describe('/api/user', function () {
     return closeServer();
   });
 
-  beforeEach(function () { });
+  //beforeEach(function () { });
 
   afterEach(function () {
     return User.remove({});
@@ -371,9 +371,7 @@ describe('/api/user', function () {
             password,
             firstName,
             lastName,
-            //contactInfo,
-            //id,
-            //repairInfo
+            
           })
           .then(res => {
             expect(res).to.have.status(201);
@@ -481,10 +479,10 @@ describe('/api/user', function () {
 
     describe('GET with :id', function() {
       it('Should return user with id', function() {
-        chai.request(app).get('api/users').then(res=>{
+        chai.request(app).get('api/users').then(res => {
           console.log(res);
           let id = res.body[0].id;
-          return chai.request(app).get(`api/users/${id}`).then(res2=> {
+          return chai.request(app).get(`api/users/${id}`).then(res2 => {
           expect(res2).to.have.status(200);
           expect(res2.body).to.be.an('object');
           expect(res2.body[0].username).to.equal(username);
@@ -493,7 +491,35 @@ describe('/api/user', function () {
       });
     });
 
-    //describe('');
+    describe('DELETE user', function() {
+      it('Should delete user by id', function() {
+        chai.request(app).get('api/users').then(res => {
+          let id = res.body[0].id;
+          return chai.request(app).delete(`api/users/${id}`).then(res2 => {
+            expect(res2.body[0]).to.equal({});
+          });
+        });
+      });
+    });
+
+    describe('PUT user', function() {
+      it('Should update user info', function() {
+        chai.request(app).get('api/users').then(res => {
+          let id = res.body[0].id;
+          return chai.request(app)
+                     .put(`api/users/${id}`)
+                     .send({
+                            contactInfo: {
+                              phoneNumber: '222-222-2222',
+                              email: 'test@email.com'
+                              }             
+                          })
+                      .then(res2 => {
+                        expect(res2.body[0].contactInfo.email).to.equal('test@email.com');
+                      });
+        });
+      });
+    });
 
   });
 });

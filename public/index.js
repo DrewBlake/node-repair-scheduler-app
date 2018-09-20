@@ -98,24 +98,24 @@ function deleteDataFromUserAPI(callback) {
 function displayConfirmDelete() {
 	$('.js-button-list').hide();
 	$('#js-form').hide();
-	
 	$('.js-sign-in-back').hide();
-	
 	$('.js-info-list').hide();
 	$('.js-back').show();
 	$('.js-confirm').show();
-	$('.js-confirm').html('<h3>Your account has been deleted</h3>');
+	$('.js-confirm').html('<h2 class="deleted">Your account has been deleted</h2>');
 }
 
 function displayUserIdData(data) {
 	let repairList = '';
 	console.log('display id data');
-	repairList = `<ul><h3> Customer ${data.firstName} ${data.lastName}'s Repair Schedule History:
-		Contact Info: ${data.contactInfo}<h3></ul>`;
+	repairList = `<ul class='cust-data'><h3> Customer ${data.firstName} ${data.lastName}'s 
+		Repair Schedule History:</h3><b>--Contact Info--</b><br>
+		Email: <b>${data.contactInfo.email}</b><br>
+		Phone Number: <b>${data.contactInfo.phoneNumber}</b></ul>`;
 	console.log(data.repairInfo.length);
 	for (let i = 0; i < data.repairInfo.length; i++) {
-		repairList += `<li>Vehicle complaint: ${data.repairInfo[i].description} - Scheduled repair date: 
-		${moment(data.repairInfo[i].date).format('MMM Do YYYY')}</li>`;
+		repairList += `<li class='cust-data'>Vehicle complaint: <b>${data.repairInfo[i].description}</b> - Scheduled repair date: 
+		<b>${moment(data.repairInfo[i].date).format('MMM Do YYYY')}</b></li>`;
 	}
 	$('.js-info-list').html(repairList);
 	repairList = '';
@@ -129,11 +129,13 @@ function displayUserData(data) {
 	console.log(data.length);
 	for(let j = 0; j < data.length; j++) {
 		
-		repairList += `<ul><h3> Customer ${data[j].firstName} ${data[j].lastName}'s 
-						Repair Schedule History: <br>Contact Info: ${data[j].contactInfo}</br><h3></ul>`;
+		repairList += `<ul class='cust-data'><h3> Customer ${data[j].firstName} ${data[j].lastName}'s 
+						Repair Schedule History:</h3>
+						<b>--Contact Info--</b><br>Email: <b>${data[j].contactInfo.email}</b></br>
+						Phone Number: <b>${data[j].contactInfo.phoneNumber}</b></ul>`;
 		for (let i = 0; i < data[j].repairInfo.length; i++) {
-			repairList += `<li>Vehicle complaint: ${data[j].repairInfo[i].description} - 
-							Scheduled repair date: ${moment(data[j].repairInfo[i].date).format('MMM Do YYYY')}</li>`;	
+			repairList += `<li class='cust-data'>Vehicle complaint: <b>${data[j].repairInfo[i].description}</b> - 
+							Scheduled repair date: <b>${moment(data[j].repairInfo[i].date).format('MMM Do YYYY')}</b></li>`;	
 		}
 		$('.js-info-list').html(`${repairList}`);		
 	}
@@ -156,28 +158,37 @@ function handleLogin(data) {
 
 function displaySignUpData(data) {
 	$('.js-form').hide();
-	let customerInfo = `<h3>Sign up successful! Your user name is: ${data.username}
-		and your contact info is: ${data.contactInfo}</h3>`;
-	$('.js-info-list').show();
-	$('.js-info-list').html(customerInfo);
+	let customerInfo = 
+	`<h2 class='message-header'>Sign up successful!</h2> 
+		<p>Your user name is: <b>${data.username}</b><br>
+		--Contact info-- <br>
+		Email: <b>${data.contactInfo.email}</b><br>
+		Phone Number: <b>${data.contactInfo.phoneNumber}</b></p>`;
+	$('#js-form').hide();
+	$('.js-confirm').show();
+	$('.js-confirm').html(customerInfo);
 }
 
 function displayRepairScheduleInfo(data) {
+	$('#js-form').hide();
 	$('.js-confirm').show();
-	$('.js-confirm').html(`<h3>You have scheduled 
-		your vehicle for repair on: ${moment(data.repairInfo.date).format('MMM Do YYYY')}, 
-		with a complaint of: ${data.repairInfo.description}.</h3>`);
+	$('.js-confirm').html(`<h2 class='message-header'>Appointment details</h2>
+		<p>Your vehicle is scheduled for repair on: 
+		<b>${moment(data.repairInfo.date).format('MMM Do YYYY')}</b><br>
+		You have a complaint of: <b>${data.repairInfo.description}</b></p>`);
 }
 
 function displayNewContactInfo(data) {
+	$('#js-form').hide();
 	$('.js-confirm').show();
-	$('.js-confirm').html(`<h3>Your new phone number is: ${data.contactInfo.phoneNumber}.
-		Your new email is: ${data.contactInfo.email}.</h3>`);
+	$('.js-confirm').html(`<h2 class='message-header'>Updated Info</h2>
+		<p>Your new phone number is: <b>${data.contactInfo.phoneNumber}</b><br>
+		Your new email is: <b>${data.contactInfo.email}</b></p>`);
 }
 
 function renderSignUpForm() {
 	return `
-		<h2>Create A New User Account</h2>
+		<h2 class='form-header'>Create A New User Account</h2>
 		<form class="js-sign-up-form">
 			<fieldset name="contact-info">
 				<legend><h2>Contact Info</h2></legend>
@@ -207,7 +218,7 @@ function renderSignUpForm() {
 
 function renderSignInForm() {
 	return `
-		<h2>Sign Into Your Account</h2>
+		<h2 class='form-header'>Sign Into Your Account</h2>
 		<form class="js-sign-in-form">
 			<fieldset name="User Info">
 		    	<legend><h2>User Info</h2></legend>
@@ -223,7 +234,7 @@ function renderSignInForm() {
 
 function renderScheduleForm() {
 	return `
-		<h2>Schedule A New Appointment</h2>
+		<h2 class='form-header'>Schedule A New Appointment</h2>
 		<form class="js-schedule-form">
 			<fieldset name="Repair Info">			
 				<legend><h2>Repair Info</h2></legend>
@@ -252,7 +263,7 @@ function renderContactForm() {
 	return `
 		<form class="js-contact-form">
 			<fieldset name="contact-info">
-				<legend><h2>Update Contact Info</h2></legend>
+				<legend><h2 class='form-header'>Update Contact Info</h2></legend>
 		        <label for="emailNew">Email</label>
 		        <input type="email" id="emailNew" placeholder="your@email.com">
 		        <br>
@@ -398,7 +409,6 @@ function handleScheduleButtonClick() {
 
 function handleDeleteUserButtonClick() {
 	$('.js-delete-user').on('click', function(event) {
-
 		if (confirm("Are you sure you want to delete your account?")) {
 			deleteDataFromUserAPI(displayConfirmDelete);
 		}
@@ -408,6 +418,7 @@ function handleDeleteUserButtonClick() {
 function handleLogoutButtonClick() {
 	$('.js-logout').on('click', function(event) {
 		if (confirm("You are about to logout!")) {
+			$('.js-description').show();
 			$('.js-sign-up').show();
 			$('.js-sign-in').show();
 			$('#js-form').hide();
@@ -433,6 +444,7 @@ function handleBackButtonClick() {
 	$('.js-back').on('click', function(event) {
 		$('.js-button-list').hide();
 		console.log('back pressed');
+		$('.js-description').show();
 		$('.js-sign-up').show();
 		$('.js-sign-in').show();
 		$('.js-info-list').hide();
@@ -469,6 +481,7 @@ function handleSignInButtonClick() {
 	$('.js-sign-in').on('click', function(event) {
 		$('.js-sign-in').hide();
 		$('.js-sign-up').hide();
+		$('.js-description').hide();
 		console.log('sign in click');
 		$('.js-back').show();
 		$('#js-form').show();
@@ -480,6 +493,7 @@ function handleSignInButtonClick() {
 function handleSignUpButtonClick() {
 	$('.js-sign-up').on('click', function(event) {
 		console.log('sign up click');
+		$('.js-description').hide();
 		$('.js-sign-up').hide();
 		$('.js-sign-in').hide();
 		$('.js-back').show();
@@ -489,7 +503,9 @@ function handleSignUpButtonClick() {
 	});
 }
 
-function hideButtons() {
+function hideElements() {
+	$('.js-confirm').hide();
+	$('.js-error').hide();
 	$('#js-form').hide();
 	$('.js-info-list').hide();
 	$('.js-button-list').hide();
@@ -498,7 +514,7 @@ function hideButtons() {
 }
 
 function runApp() {
-	hideButtons();
+	hideElements();
 	handleUpdateButtonClick();
 	handleScheduleButtonClick();
 	handleSignInButtonClick();

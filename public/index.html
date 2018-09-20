@@ -8,26 +8,31 @@
 	</head>
 	<body>
 		<main role='main'>
-			<h1 role='banner' class="title">Auto Repair Scheduler</h1>
-			<h2 class="description">Create an account that allows you to schedule your vehicle for repair.  View your schedule history, update or delete your account.</h2>
+			<header class="head-title">
+				<h1 role='banner' class="title"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxAZT26sU33LCvL5Ac7-ZLf86XKN11lCvL5v7b8NUZ4dqSsG2U" class="ase-image">Auto Repair Scheduler</h1>
+			</header>
+			<h2 class="js-description description">Create an account that allows you to schedule your vehicle for repair.  View your schedule history, update or delete your account.</h2>
 			<div class="home-buttons">
 				<button type="submit" class="js-sign-up sign-button">Sign Up</button>
 				<button type="submit" class="js-sign-in sign-button">Sign In</button>
 			</div>
-			<ul class="js-button-list button-list">
-				<li><button type="submit" class="js-search-all-users list-button">Search All users</button></li>
-				<li><button type="submit" class="js-repair-history list-button">Show repair schedule</button></li>
-				<li><button type="submit" class="js-schedule-button list-button">Schedule Appt</button></li>
-				<li><button type="submit" class="js-update-contact list-button">Update Contact Info</button>
-				<li><button type="submit" class="js-delete-user list-button">Delete your account</button></li>
-				<li><button type="submit" class="js-logout list-button">Logout</button></li>
-			</ul>
+			<div class="js-button-list button-list">
+				<button type="submit" class="js-search-all-users list-button">Search All users</button>
+				<button type="submit" class="js-repair-history list-button">Show repair schedule</button>
+				<button type="submit" class="js-schedule-button list-button">Schedule Appt</button>
+				<button type="submit" class="js-update-contact list-button">Update Contact Info</button>
+				<button type="submit" class="js-delete-user list-button">Delete your account</button>
+				<button type="submit" class="js-logout list-button">Logout</button>
+			</div>
+
 			<div id="js-form" class="form" aria-live="assertive"></div>
 			<div class="js-info-list list" aria-live="assertive"></div>
-			<div class="js-error message" aria-live="assertive"></div>
+			<div class="js-error message-error" aria-live="assertive"></div>
 			<div class="js-confirm message" aria-live="assertive"></div>
+			
 			<button type="submit" class="js-back back-button">Back</button>
 			<button type="submit" class="js-sign-in-back back-button">Back</button>
+			
 			
 		</main>
 		

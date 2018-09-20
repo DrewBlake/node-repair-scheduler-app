@@ -2,17 +2,7 @@
 const bcrypt = require('bcryptjs');
 const mongoose = require('mongoose');
 
-
 mongoose.Promise = global.Promise;
-
-/*const repairInfoSchema = mongoose.Schema({ 
-  date: String,
-    vehicleInfo: {
-      year: Number,
-      make: String,
-      model: String
-    },
-    description: String});*/
 
 const UserSchema = mongoose.Schema({
   username: {
@@ -46,15 +36,7 @@ const UserSchema = mongoose.Schema({
 });
 
 UserSchema.virtual('contact').get(function() {
-  return `phone #: ${this.contactInfo.phoneNumber} email: ${this.contactInfo.email}`;
-});
-
-UserSchema.virtual('vehicle').get(function() {
-  return `${this.vehicleInfo.year} ${this.vehicleInfo.make} ${this.vehicleInfo.model}`;
-});
-
-UserSchema.virtual('repairHistory').get(function() {
-  return `${this.repairInfo[0].date} ${this.repairInfo[0].description}`
+  return `phone #: ${this.contactInfo.phoneNumber} <br> email: ${this.contactInfo.email}`;
 });
 
 UserSchema.methods.serialize = function() {
@@ -64,12 +46,9 @@ UserSchema.methods.serialize = function() {
     lastName: this.lastName || '',
     id: this._id,
     admin: this.admin,
-    contactInfo: this.contact || '',
-    /*vehicleInfo: this.vehicle || '',*/
+    contactInfo: this.contactInfo || '',
     repairInfo: this.repairInfo
-    /*passwordOriginal: this.passwordOriginal,
-    password: this.password,
-    admin: this.admin*/
+    
   };
 };
 
