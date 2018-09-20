@@ -108,13 +108,13 @@ function displayConfirmDelete() {
 function displayUserIdData(data) {
 	let repairList = '';
 	console.log('display id data');
-	repairList = `<ul class='cust-data'><h3> Customer ${data.firstName} ${data.lastName}'s 
-		Repair Schedule History:</h3><b>--Contact Info--</b><br>
+	repairList = `<h2 class='message-header'> Customer ${data.firstName} ${data.lastName}'s 
+		Repair Schedule History</h2><ul class='cust-data'><h3>--Contact Info--</h3>
 		Email: <b>${data.contactInfo.email}</b><br>
 		Phone Number: <b>${data.contactInfo.phoneNumber}</b></ul>`;
 	console.log(data.repairInfo.length);
 	for (let i = 0; i < data.repairInfo.length; i++) {
-		repairList += `<li class='cust-data'>Vehicle complaint: <b>${data.repairInfo[i].description}</b> - Scheduled repair date: 
+		repairList += `<li class='cust-data'>Vehicle complaint: <b>${data.repairInfo[i].description}</b><br>Scheduled repair date: 
 		<b>${moment(data.repairInfo[i].date).format('MMM Do YYYY')}</b></li>`;
 	}
 	$('.js-info-list').html(repairList);
@@ -129,12 +129,13 @@ function displayUserData(data) {
 	console.log(data.length);
 	for(let j = 0; j < data.length; j++) {
 		
-		repairList += `<ul class='cust-data'><h3> Customer ${data[j].firstName} ${data[j].lastName}'s 
-						Repair Schedule History:</h3>
-						<b>--Contact Info--</b><br>Email: <b>${data[j].contactInfo.email}</b></br>
-						Phone Number: <b>${data[j].contactInfo.phoneNumber}</b></ul>`;
+		repairList += `<h2 class='message-header'> Customer ${data[j].firstName} ${data[j].lastName}'s 
+						Repair Schedule History</h2>
+						<ul class='cust-data'>
+						<h3>--Contact Info--</h3>Email: <b>${data[j].contactInfo.email}</b></br>
+						Phone Number: <b>${data[j].contactInfo.phoneNumber}</b></ul><br>`;
 		for (let i = 0; i < data[j].repairInfo.length; i++) {
-			repairList += `<li class='cust-data'>Vehicle complaint: <b>${data[j].repairInfo[i].description}</b> - 
+			repairList += `<li class='cust-data'>Vehicle complaint: <b>${data[j].repairInfo[i].description}</b><br>
 							Scheduled repair date: <b>${moment(data[j].repairInfo[i].date).format('MMM Do YYYY')}</b></li>`;	
 		}
 		$('.js-info-list').html(`${repairList}`);		
