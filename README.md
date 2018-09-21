@@ -29,23 +29,23 @@ https://shielded-lake-73319.herokuapp.com/
 </ul>
 
 <h2>Screen shots</h2>
-<p>Home page:</p>
+<h3>Home page:</h3>
 <img src="https://github.com/DrewBlake/node-repair-scheduler-app/blob/master/screen_shots/home_screen.PNG" />
 
-<p>Sign up form - create a new account:</p>
+<h3>Sign up form - create a new account:</h3>
 <img src="https://github.com/DrewBlake/node-repair-scheduler-app/blob/master/screen_shots/sign_up.PNG" />
 
-<p>Sing in form - sign in to existing account:</p>
+<h3>Sing in form - sign in to existing account:</h3>
 <img src="https://github.com/DrewBlake/node-repair-scheduler-app/blob/master/screen_shots/sign_in.PNG" />
 
-<p>Home screen of signed in Admin user - Has Search all users button:</p>
+<h3>Home screen of signed in Admin user - Has Search all users button:</h3>
 <img src="https://github.com/DrewBlake/node-repair-scheduler-app/blob/master/screen_shots/admin_homescreen.PNG" />
 
-<p>Shows repair schedule:</p>
+<h3>Shows repair schedule:</h3>
 <img src="https://github.com/DrewBlake/node-repair-scheduler-app/blob/master/screen_shots/repair_history.PNG" />
 
-<p>Schedule Appointment Form:</p>
+<h3>Schedule Appointment Form:</h3>
 <img src="https://github.com/DrewBlake/node-repair-scheduler-app/blob/master/screen_shots/schedule_appt.PNG" />
 
-<p>Update Contact Info Form:</p>
+<h3>Update Contact Info Form:</h3>
 <img src="https://github.com/DrewBlake/node-repair-scheduler-app/blob/master/screen_shots/update_contact_info.PNG" />

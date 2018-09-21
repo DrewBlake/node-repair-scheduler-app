@@ -214,24 +214,24 @@ function renderSignUpForm() {
 			<fieldset name="contact-info">
 				<legend><h2>Contact Info</h2></legend>
 		        <label for="first-name">Fist Name</label>
-		        <input type="text" id="first-name" placeholder="First Name" required>
+		        <input type="text" id="first-name" placeholder=" First Name" required>
 		        <br>
 		        <label for="last-name">Last Name</label>
-		        <input type="text" id="last-name" placeholder="Last Name" required>
+		        <input type="text" id="last-name" placeholder=" Last Name" required>
 		        <br>
 		        <label for="email">Email</label>
-		        <input type="email" id="email" placeholder="your@email.com">
+		        <input type="email" id="email" placeholder=" your@email.com">
 		        <br>
 		        <label for="phone">Phone #</label>
-		        <input type="tel" pattern="[0-9/-]*" id="phone" placeholder="444-444-4444" required>    
+		        <input type="tel" pattern="[0-9/-]*" id="phone" placeholder=" 444-444-4444" required>    
 		    </fieldset>
 		    <fieldset name="User Info">
 		    	<legend><h2>User Info</h2></legend>
 		    	<label for="username">Username</label>
-		        <input type="text" id="username" placeholder="Username" required>
+		        <input type="text" id="username" placeholder=" Username" required>
 		        <br>
 		        <label for="password">Password</label>
-		        <input type="text" id="password" placeholder="Password" required>
+		        <input type="text" id="password" placeholder=" Password" required>
 		    </fieldset>
 		    <button type="submit" class="submit-button">Submit</button>
 	    </form>`;
@@ -244,10 +244,10 @@ function renderSignInForm() {
 			<fieldset name="User Info">
 		    	<legend><h2>User Info</h2></legend>
 		    	<label for="usernameIn">Username</label>
-		        <input type="text" id="usernameIn" placeholder="Username" required>
+		        <input type="text" id="usernameIn" placeholder=" Username" required>
 		        <br>
 		        <label for="passwordIn">Password</label>
-		        <input type="text" id="passwordIn" placeholder="Password" required>
+		        <input type="text" id="passwordIn" placeholder=" Password" required>
 		    </fieldset>
 		    <button type="submit" class="submit-button">Submit</button>
 		</form>`;
@@ -270,10 +270,10 @@ function renderScheduleForm() {
 				<input type="Number" id="year" required>
 				<br>
 				<label for="make">Make</label>
-				<input type="text" id="make" required>
+				<input type="text" id="make" placeholder=" Exp Honda" required>
 				<br>
 				<label for="model">Model</label>
-				<input type="text" id="model" required>
+				<input type="text" id="model" placeholder=" Exp Accord" required>
 				<br>	
 			</fieldset>
 			<button type="submit" class="submit-button">Submit</button>
@@ -286,10 +286,10 @@ function renderContactForm() {
 			<fieldset name="contact-info">
 				<legend><h2 class='form-header'>Update Contact Info</h2></legend>
 		        <label for="emailNew">Email</label>
-		        <input type="email" id="emailNew" placeholder="your@email.com">
+		        <input type="email" id="emailNew" placeholder=" your@email.com">
 		        <br>
 		        <label for="phoneNew">Phone #</label>
-		        <input type="tel" pattern="[0-9/-]*" id="phoneNew" placeholder="444-444-4444" required>  
+		        <input type="tel" pattern="[0-9/-]*" id="phoneNew" placeholder=" 444-444-4444" required>  
 		    </fieldset>
 		    <button type="submit" class="submit-button">Submit</button>
 	    </form>`;
