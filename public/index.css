@@ -196,7 +196,7 @@ p {
 }
 
 .list {
-  width: 80%;
+  /*width: 80%;*/
   list-style: none;
   padding: 20px;
   margin-top: 100px;
@@ -216,6 +216,10 @@ p {
 
   .list, .message {
     font-size: 15px;
+  }
+
+  .list {
+    width: 80%;
   }
 
   .copyright {
