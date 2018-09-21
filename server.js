@@ -5,17 +5,10 @@ const mongoose = require('mongoose');
 const morgan = require('morgan');
 const passport = require('passport');
 
-// Here we use destructuring assignment with renaming so the two variables
-// called router (from ./users and ./auth) have different names
-// For example:
-// const actorSurnames = { james: "Stewart", robert: "De Niro" };
-// const { james: jimmy, robert: bobby } = actorSurnames;
-// console.log(jimmy); // Stewart - the variable name is jimmy, not james
-// console.log(bobby); // De Niro - the variable name is bobby, not robert
 const { router: usersRouter } = require('./users');
-//const { router: customersRouter } = require('./customers');
+
 const { router: authRouter, localStrategy, jwtStrategy } = require('./auth');
-const { Customer } = require('./customers/models');
+
 mongoose.Promise = global.Promise;
 
 const { PORT, DATABASE_URL } = require('./config');
@@ -45,40 +38,10 @@ app.use('/api/auth/', authRouter);
 
 const jwtAuth = passport.authenticate('jwt', { session: false });
 
-// A protected endpoint which needs a valid JWT to access it
-app.get('/api/protected', jwtAuth, (req, res) => {
-  return res.json({
-    data: "You've gained access"
-  });
-});
-
+// Connect to html and the rest of the front end
 app.get('/', (req, res) => {
   return res.sendFile(__dirname + '/public/index.html');
 });
-
-/*app.post('/customers', (req, res) => {
-  const requiredFields = ['contactInfo', 'vehicleInfo', 'description'];
-  for (let i = 0; i < requiredFields.length; i++) {
-    const field = requiredFields[i];
-    if (!(field in req.body)) {
-      const message = `Missing \`${field}\` in request body`;
-      console.error(message);
-      return res.status(400).send(message);
-    }
-  }
-
-  Customer
-    .create({
-      contactInfo: req.body.contactInfo,
-      vehicleInfo: req.body.vehicleInfo,
-      description: req.body.description
-    })
-    .then(customer => res.status(201).json(customer.serialize()))
-    .catch(err => {
-      console.error(err);
-      res.status(500).json({ error: 'Something went wrong' });
-    });
-});*/
 
 app.use('*', (req, res) => {
   return res.status(404).json({ message: 'Not Found' });

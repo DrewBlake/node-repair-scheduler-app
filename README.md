@@ -32,11 +32,20 @@ https://shielded-lake-73319.herokuapp.com/
 <p>Home page:</p>
 <img src="https://github.com/DrewBlake/node-repair-scheduler-app/blob/master/screen_shots/home_screen.PNG" />
 
-<p>Search page with input option:</p>
+<p>Sign up form - create a new account:</p>
 <img src="" />
 
-<p>Map display with location markers and weather display:</p>
-<img src="https://github.com/DrewBlake/auto-shop-finder/blob/master/screen_shots/Map_with_markers.PNG?raw=true" />
+<p>Sing in form - sign in to existing account:</p>
+<img src="" />
 
-<p>List of shops (shows underneath map display):</p>
-<img src="https://github.com/DrewBlake/auto-shop-finder/blob/master/screen_shots/shop_list_updated.PNG?raw=true" />
+<p>Home screen of signed in Admin user - Has Search all users button:</p>
+<img src="" />
+
+<p>Shows repair schedule:</p>
+<img src="" />
+
+<p>Schedule Appointment Form:</p>
+<img src="" />
+
+<p>Update Contact Info Form:</p>
+<img src="" />
