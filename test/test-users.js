@@ -29,8 +29,6 @@ describe('/api/user', function () {
     return closeServer();
   });
 
-  //beforeEach(function () { });
-
   afterEach(function () {
     return User.remove({});
   });

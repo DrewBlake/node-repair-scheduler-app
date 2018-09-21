@@ -4,6 +4,7 @@ let token;
 let userId;
 let admin;
 
+// ajax function to get all users in database, for admin use only
 function getDataFromUserAPI(callback) {	
 	const settings = {
 		headers: {
@@ -17,6 +18,7 @@ function getDataFromUserAPI(callback) {
 	$.ajax(settings);
 }
 
+//ajax function to get specific user data by id
 function getDataFromUserIdAPI(callback) {
 	const settings = {
 		headers: {
@@ -30,6 +32,8 @@ function getDataFromUserIdAPI(callback) {
 	$.ajax(settings);
 }
 
+//ajax function to used to add repair info or update contact info
+//depending on which data is sent to back end put function.
 function putRepairDataToUserApi(data, callback) {
 	console.log(userId);
 	const settings = {
@@ -47,6 +51,7 @@ function putRepairDataToUserApi(data, callback) {
 	$.ajax(settings);
 }
 
+//ajax function used to create new user
 function postDataToUserApi(data, callback) {
 	$('.js-error').hide();
 	const settings = {
@@ -66,6 +71,8 @@ function postDataToUserApi(data, callback) {
 	});
 }
 
+
+//ajax function used to login to existing account
 function postDataToLoginApi(data, callback) {
 	$('.js-error').hide();
 	const settings = {
@@ -82,6 +89,7 @@ function postDataToLoginApi(data, callback) {
 	});
 }
 
+//ajax function used to delete user account by id
 function deleteDataFromUserAPI(callback) {
 	const settings = {
 		headers: {
@@ -95,6 +103,7 @@ function deleteDataFromUserAPI(callback) {
 	$.ajax(settings);
 }
 
+//displays delete confirmation message
 function displayConfirmDelete() {
 	$('.js-button-list').hide();
 	$('#js-form').hide();
@@ -105,6 +114,8 @@ function displayConfirmDelete() {
 	$('.js-confirm').html('<h2 class="deleted">Your account has been deleted</h2>');
 }
 
+//callback function used to display specific user data and 
+//repair history 
 function displayUserIdData(data) {
 	let repairList = '';
 	console.log('display id data');
@@ -121,6 +132,8 @@ function displayUserIdData(data) {
 	repairList = '';
 }
 
+//callback function used to display all users and their repair
+//history.  For admin use only
 function displayUserData(data) {
 	console.log(data);
 	console.log('hello1');
@@ -143,6 +156,9 @@ function displayUserData(data) {
 	repairList = '';
 }
 
+
+//callback function to handle login data and display 
+//correct buttons depending on admin or regular user
 function handleLogin(data) {
 	token = data.authToken;
 	userId = data.user.id;
@@ -157,6 +173,8 @@ function handleLogin(data) {
 	$('.js-button-list').show();
 }
 
+//callback function shows confirmation of successful creation
+//of user account
 function displaySignUpData(data) {
 	$('.js-form').hide();
 	let customerInfo = 
@@ -170,6 +188,7 @@ function displaySignUpData(data) {
 	$('.js-confirm').html(customerInfo);
 }
 
+//callback function, confirms appointment schedule info
 function displayRepairScheduleInfo(data) {
 	$('#js-form').hide();
 	$('.js-confirm').show();
@@ -179,6 +198,7 @@ function displayRepairScheduleInfo(data) {
 		You have a complaint of: <b>${data.repairInfo.description}</b></p>`);
 }
 
+//callback function, confirms new contact info
 function displayNewContactInfo(data) {
 	$('#js-form').hide();
 	$('.js-confirm').show();
@@ -291,6 +311,7 @@ function displaySignUpForm() {
 	$('#js-form').html(renderSignUpForm);
 }
 
+//function that handles sign up button click on sign up form
 function handleSubmitButtonClick() {
 	$('.js-sign-up-form').submit(function(event) {
 		event.preventDefault();
@@ -320,6 +341,7 @@ function handleSubmitButtonClick() {
 	});
 }
 
+//function that handles sign in button click on sign in form
 function handleSubmitInButtonClick() {
 	$('.js-sign-in-form').submit(function(event) {
 		event.preventDefault();
@@ -339,6 +361,7 @@ function handleSubmitInButtonClick() {
 	});
 }
 
+//function that handles submit button on form to schedule repair
 function handleScheduleSubmitClick() {
 	$('.js-schedule-form').submit(function(event) {
 		event.preventDefault();
@@ -367,6 +390,7 @@ function handleScheduleSubmitClick() {
 	});
 }
 
+//function to handle submit button on form to update user contact info
 function handleUpdateContactSubmit() {
 	$('.js-contact-form').submit(function(event) {
 		event.preventDefault();
@@ -386,6 +410,8 @@ function handleUpdateContactSubmit() {
 	});
 }
 
+//handles click on update contact info button, displays contact form
+//and runs form submit function
 function handleUpdateButtonClick() {
 	$('.js-update-contact').on('click', function(event) {
 		console.log('update contact click');
@@ -397,6 +423,8 @@ function handleUpdateButtonClick() {
 	});
 }
 
+//handles click on schedule appointment button, displays schedule
+//form and runs form submit function
 function handleScheduleButtonClick() {
 	$('.js-schedule-button').on('click', function(event) {
 		console.log('schedule button click');
@@ -408,6 +436,7 @@ function handleScheduleButtonClick() {
 	});
 }
 
+//handles delete your account button, runs function to delete account
 function handleDeleteUserButtonClick() {
 	$('.js-delete-user').on('click', function(event) {
 		if (confirm("Are you sure you want to delete your account?")) {
@@ -419,6 +448,7 @@ function handleDeleteUserButtonClick() {
 function handleLogoutButtonClick() {
 	$('.js-logout').on('click', function(event) {
 		if (confirm("You are about to logout!")) {
+			$('.js-copyright').show();
 			$('.js-description').show();
 			$('.js-sign-up').show();
 			$('.js-sign-in').show();
@@ -431,6 +461,8 @@ function handleLogoutButtonClick() {
 	});
 }
 
+//handles back button click on page once already signed in
+//shows initial page seen after user first signs in
 function handleSignBackButtonClick() {
 	$('.js-sign-in-back').on('click', function(event) {
 		$('.js-sign-in-back').hide();
@@ -441,10 +473,12 @@ function handleSignBackButtonClick() {
 	});
 }
 
+//handles back button click on home page
 function handleBackButtonClick() {
 	$('.js-back').on('click', function(event) {
 		$('.js-button-list').hide();
 		console.log('back pressed');
+		$('.js-copyright').show();
 		$('.js-description').show();
 		$('.js-sign-up').show();
 		$('.js-sign-in').show();
@@ -457,6 +491,7 @@ function handleBackButtonClick() {
 	});
 }
 
+//handles search all users button, only displayed for admin user 
 function handleSearchUsersButton() {
 	$('.js-search-all-users').on('click', function(event) {
 		console.log('hello2');
@@ -468,6 +503,8 @@ function handleSearchUsersButton() {
 	});
 }
 
+//handles search show repair schedule button, will display repair
+//data history for specific user by id
 function handleSearchUserIdButton() {
 	$('.js-repair-history').on('click', function(event) {
 		getDataFromUserIdAPI(displayUserIdData);
@@ -478,8 +515,11 @@ function handleSearchUserIdButton() {
 	});
 }
 
+//displays sign in form and runs form submit button after sign in
+//button click
 function handleSignInButtonClick() {
 	$('.js-sign-in').on('click', function(event) {
+		$('.js-copyright').hide();
 		$('.js-sign-in').hide();
 		$('.js-sign-up').hide();
 		$('.js-description').hide();
@@ -491,9 +531,12 @@ function handleSignInButtonClick() {
 	});
 }
 
+//displays sign up form after sign up button clicked and 
+//handles submit button for the form
 function handleSignUpButtonClick() {
 	$('.js-sign-up').on('click', function(event) {
 		console.log('sign up click');
+		$('.js-copyright').hide();
 		$('.js-description').hide();
 		$('.js-sign-up').hide();
 		$('.js-sign-in').hide();
@@ -504,6 +547,7 @@ function handleSignUpButtonClick() {
 	});
 }
 
+//hides elements not meant to be seen on home page
 function hideElements() {
 	$('.js-confirm').hide();
 	$('.js-error').hide();
