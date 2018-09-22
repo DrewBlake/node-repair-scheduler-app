@@ -196,7 +196,6 @@ p {
 }
 
 .list {
-  /*width: 80%;*/
   list-style: none;
   padding: 20px;
   margin-top: 100px;
@@ -206,10 +205,11 @@ p {
   color: white;
   background-color: black;
   width: 50%;
-  margin-left: auto;
-  margin-right: auto;
+  position: absolute;
+  display: inline-table;
+  left: 25%;
   text-align: center;
-  margin-top: 380px;
+  top: 620px;
 }
 
 @media only screen and (max-width: 800px) {
@@ -222,9 +222,6 @@ p {
     width: 80%;
   }
 
-  .copyright {
-    margin-top: 350px;
-  }
 }
 
 @media only screen and (max-width: 600px) {
@@ -257,9 +254,7 @@ p {
     font-size: 20px;
   }
 
-  .copyright {
-    margin-top: 380px;
-  }
+  
 
   fieldset {
     font-size: 20px;
@@ -341,8 +336,8 @@ p {
     }
 
     .copyright {
-      margin-top: 300px;
-      font-size: 10px;
+      font-size: 12px;
     }
+ 
 }
   

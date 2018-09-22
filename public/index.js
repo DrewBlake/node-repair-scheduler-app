@@ -32,7 +32,7 @@ function getDataFromUserIdAPI(callback) {
 	$.ajax(settings);
 }
 
-//ajax function to used to add repair info or update contact info
+//ajax function used to add repair info or update contact info
 //depending on which data is sent to back end put function.
 function putRepairDataToUserApi(data, callback) {
 	console.log(userId);
@@ -52,6 +52,7 @@ function putRepairDataToUserApi(data, callback) {
 }
 
 //ajax function used to create new user
+//if fails returns specific error - example- password must be 10 characters
 function postDataToUserApi(data, callback) {
 	$('.js-error').hide();
 	const settings = {
@@ -73,6 +74,7 @@ function postDataToUserApi(data, callback) {
 
 
 //ajax function used to login to existing account
+//gives error message if problem with username or password
 function postDataToLoginApi(data, callback) {
 	$('.js-error').hide();
 	const settings = {
@@ -270,10 +272,10 @@ function renderScheduleForm() {
 				<input type="Number" id="year" required>
 				<br>
 				<label for="make">Make</label>
-				<input type="text" id="make" placeholder=" Exp Honda" required>
+				<input type="text" id="make" placeholder=" Honda" required>
 				<br>
 				<label for="model">Model</label>
-				<input type="text" id="model" placeholder=" Exp Accord" required>
+				<input type="text" id="model" placeholder=" Accord" required>
 				<br>	
 			</fieldset>
 			<button type="submit" class="submit-button">Submit</button>
