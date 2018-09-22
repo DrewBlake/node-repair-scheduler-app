@@ -191,8 +191,7 @@ p {
 }
 
 .message {
-  margin-top: 110px;
-  
+  margin-top: 110px; 
 }
 
 .list {
@@ -221,7 +220,6 @@ p {
   .list {
     width: 80%;
   }
-
 }
 
 @media only screen and (max-width: 600px) {
@@ -254,8 +252,6 @@ p {
     font-size: 20px;
   }
 
-  
-
   fieldset {
     font-size: 20px;
   }
@@ -264,7 +260,7 @@ p {
     width: 150px;
   }
 
-  .form, .list {
+  .form, .list, .message, .message-error {
     width: 85%
   }
 
@@ -272,7 +268,6 @@ p {
     width: 220px;
     font-size: 18px;
   }
-
 }
 
 @media only screen and (max-width: 500px) {
@@ -283,13 +278,16 @@ p {
     }
 
     input {
-      height: 30px;
-      
+      height: 30px; 
     }
 
     .back-button, .submit-button {
       font-size: 15px;  
       width: 120px;
+    }
+
+    .message, .message-error {
+      width: 100%;
     }
 
     .form {
@@ -320,8 +318,7 @@ p {
       font-size: 15px;
     }
 
-    .cust-data {
-      
+    .cust-data {     
       font-size: 13px;
     }
 
@@ -338,6 +335,5 @@ p {
     .copyright {
       font-size: 12px;
     }
- 
 }
   
