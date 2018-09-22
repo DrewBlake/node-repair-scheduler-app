@@ -64,7 +64,6 @@ function postDataToUserApi(data, callback) {
 		success: callback
 	}
 	$.ajax(settings).fail(function(data) {
-		console.log(data.responseJSON);
 		let location = data.responseJSON.location;
 		let message = data.responseJSON.message;
 		$('.js-error').html(`<h2>Check ${location}. ${message}.</h2>`);
@@ -120,16 +119,18 @@ function displayConfirmDelete() {
 //repair history 
 function displayUserIdData(data) {
 	let repairList = '';
-	console.log('display id data');
 	repairList = `<h2 class='message-header'> Customer ${data.firstName} ${data.lastName}'s 
-		Repair Schedule History</h2><ul class='cust-data'><h3>--Contact Info--</h3>
+		Repair Schedule History</h2>
+		<div class='contact-info-container'><h3>--Contact Info--</h3>
 		Email: <b>${data.contactInfo.email}</b><br>
-		Phone Number: <b>${data.contactInfo.phoneNumber}</b></ul>`;
+		Phone Number: <b>${data.contactInfo.phoneNumber}</b></div>
+		<ul class='cust-data-container'>`;
 	console.log(data.repairInfo.length);
 	for (let i = 0; i < data.repairInfo.length; i++) {
 		repairList += `<li class='cust-data'>Vehicle complaint: <b>${data.repairInfo[i].description}</b><br>Scheduled repair date: 
 		<b>${moment(data.repairInfo[i].date).format('MMM Do YYYY')}</b></li>`;
 	}
+	repairList += `</ul>`;
 	$('.js-info-list').html(repairList);
 	repairList = '';
 }
@@ -140,19 +141,22 @@ function displayUserData(data) {
 	console.log(data);
 	console.log('hello1');
 	let repairList = '';
-	
-	console.log(data.length);
+
 	for(let j = 0; j < data.length; j++) {
 		
 		repairList += `<h2 class='message-header'> Customer ${data[j].firstName} ${data[j].lastName}'s 
 						Repair Schedule History</h2>
-						<ul class='cust-data'>
+						
+						<div class='contact-info-container'>
 						<h3>--Contact Info--</h3>Email: <b>${data[j].contactInfo.email}</b></br>
-						Phone Number: <b>${data[j].contactInfo.phoneNumber}</b></ul><br>`;
+						Phone Number: <b>${data[j].contactInfo.phoneNumber}</b><br></div>
+						<ul class='cust-data-container'>`;
+
 		for (let i = 0; i < data[j].repairInfo.length; i++) {
 			repairList += `<li class='cust-data'>Vehicle complaint: <b>${data[j].repairInfo[i].description}</b><br>
 							Scheduled repair date: <b>${moment(data[j].repairInfo[i].date).format('MMM Do YYYY')}</b></li>`;	
 		}
+		repairList += `</ul>`;
 		$('.js-info-list').html(`${repairList}`);		
 	}
 	repairList = '';
@@ -169,7 +173,6 @@ function handleLogin(data) {
 	if (admin) {
 		$('.js-search-all-users').show();
 	}
-	console.log(data.user.admin);
 	$('#js-form').hide();
 	$('.js-back').hide();
 	$('.js-button-list').show();
@@ -233,7 +236,7 @@ function renderSignUpForm() {
 		        <input type="text" id="username" placeholder=" Username" required>
 		        <br>
 		        <label for="password">Password</label>
-		        <input type="text" id="password" placeholder=" Password" required>
+		        <input type="password" id="password" placeholder=" Password" required>
 		    </fieldset>
 		    <button type="submit" class="submit-button">Submit</button>
 	    </form>`;
@@ -249,7 +252,7 @@ function renderSignInForm() {
 		        <input type="text" id="usernameIn" placeholder=" Username" required>
 		        <br>
 		        <label for="passwordIn">Password</label>
-		        <input type="text" id="passwordIn" placeholder=" Password" required>
+		        <input type="password" id="passwordIn" placeholder=" Password" required>
 		    </fieldset>
 		    <button type="submit" class="submit-button">Submit</button>
 		</form>`;

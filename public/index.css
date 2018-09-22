@@ -75,13 +75,12 @@ button {
 }
 
 .back-button:hover, .list-button:hover {
-  color: black;
+  color: white;
   background-color: rgb(178, 130, 25);
 }
 
 .sign-button {
   font-size: 20px;
-  color: black;
   background-color: rgb(178, 130, 25);
   width: 200px;
   height: 45px;
@@ -100,7 +99,6 @@ button {
 }
 
 .submit-button {
-  color: black;
   margin-left: 15px;
   width: 150px;
   height: 30px;
@@ -121,17 +119,31 @@ button {
 }
 
 .form-header, .message-header {
-  color: black;
+  color: white;
   background-color: rgb(178, 130, 25);
   border-radius: 5px;
   padding: 10px;
 }
 
+.contact-info-container {
+  border-radius: 5px;
+  color: white;
+  background-color: rgb(178, 130, 25);
+  padding-top: 5px;
+  padding-bottom: 20px;
+}
+
+.cust-data-container {
+  padding-top: 5px;
+}
+
 .cust-data {
-  margin-left: 10%;
+  list-style: none;
+  margin: auto;
   text-align: left;
   font-size: 20px;
   margin-bottom: 15px;
+  padding: 0;
 }
 
 .message-header {
