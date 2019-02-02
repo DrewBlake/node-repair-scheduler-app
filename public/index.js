@@ -245,9 +245,9 @@ function renderSignInForm() {
 		<h2 class='form-header'>Sign Into Your Account</h2>
 		<form class="js-sign-in-form">
 		<p>Demo:</p>
-		<p>Username: ' Nuser '</p>
-		<p>Password: ' theNewestUser '</P>
-		<p>This is an Admin account -- gives option to 'Search all users'</p>
+		<p>Username: "Nuser"</p>
+		<p>Password: "theNewestUser"</P>
+		<p>This is an Admin account -- gives option to "Search all users"</p>
 			<fieldset name="User Info">
 		    	<legend><h2>User Info</h2></legend>
 		    	<label for="usernameIn">Username</label>
