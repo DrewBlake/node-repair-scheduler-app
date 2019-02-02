@@ -35,7 +35,7 @@ function getDataFromUserIdAPI(callback) {
 //ajax function used to add repair info or update contact info
 //depending on which data is sent to back end put function.
 function putRepairDataToUserApi(data, callback) {
-	console.log(userId);
+	
 	const settings = {
 		headers: {
 			authorization: `Bearer ${token}`
@@ -125,7 +125,7 @@ function displayUserIdData(data) {
 		Email: <b>${data.contactInfo.email}</b><br>
 		Phone Number: <b>${data.contactInfo.phoneNumber}</b></div>
 		<ul class='cust-data-container'>`;
-	console.log(data.repairInfo.length);
+	
 	for (let i = 0; i < data.repairInfo.length; i++) {
 		repairList += `<li class='cust-data'>Vehicle complaint: <b>${data.repairInfo[i].description}</b><br>Scheduled repair date: 
 		<b>${moment(data.repairInfo[i].date).format('MMM Do YYYY')}</b></li>`;
