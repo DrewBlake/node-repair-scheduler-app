@@ -138,8 +138,6 @@ function displayUserIdData(data) {
 //callback function used to display all users and their repair
 //history.  For admin use only
 function displayUserData(data) {
-	console.log(data);
-	console.log('hello1');
 	let repairList = '';
 
 	for(let j = 0; j < data.length; j++) {
@@ -246,7 +244,9 @@ function renderSignInForm() {
 	return `
 		<h2 class='form-header'>Sign Into Your Account</h2>
 		<form class="js-sign-in-form">
-		<p>Demo: Username: 'Nuser' -- Password: 'theNewestUser'</P>
+		<p>Demo:</p>
+		<p>Username: ' Nuser '</p>
+		<p>Password: ' theNewestUser '</P>
 		<p>This is an Admin account -- gives option to 'Search all users'</p>
 			<fieldset name="User Info">
 		    	<legend><h2>User Info</h2></legend>
@@ -356,9 +356,6 @@ function handleSubmitInButtonClick() {
 		const passwordIn = $('#passwordIn').val();
 		$('#usernameIn').val('');
 		$('#passwordIn').val('');
-		console.log(usernameIn);
-		console.log(passwordIn);
-		
 		const userData = {
 			username: usernameIn,
 			password: passwordIn
@@ -382,7 +379,6 @@ function handleScheduleSubmitClick() {
 		$('#year').val('');
 		$('#make').val('');
 		$('#model').val('');
-		console.log(description);
 		const userData = {
 			id: userId,
 			date: date,
@@ -403,7 +399,6 @@ function handleUpdateContactSubmit() {
 		event.preventDefault();
 		const phoneNumber = $('#phoneNew').val();
 		const email = $('#emailNew').val();
-		console.log(email);
 		$('#phoneNew').val('');
 		$('#emailNew').val('');
 		const userData = {
@@ -421,7 +416,6 @@ function handleUpdateContactSubmit() {
 //and runs form submit function
 function handleUpdateButtonClick() {
 	$('.js-update-contact').on('click', function(event) {
-		console.log('update contact click');
 		$('.js-button-list').hide();
 		$('#js-form').show();
 		$('.js-sign-in-back').show();
@@ -434,7 +428,6 @@ function handleUpdateButtonClick() {
 //form and runs form submit function
 function handleScheduleButtonClick() {
 	$('.js-schedule-button').on('click', function(event) {
-		console.log('schedule button click');
 		$('.js-button-list').hide();
 		$('#js-form').show();
 		$('.js-sign-in-back').show();
@@ -484,7 +477,6 @@ function handleSignBackButtonClick() {
 function handleBackButtonClick() {
 	$('.js-back').on('click', function(event) {
 		$('.js-button-list').hide();
-		console.log('back pressed');
 		$('.js-copyright').show();
 		$('.js-description').show();
 		$('.js-sign-up').show();
@@ -501,7 +493,6 @@ function handleBackButtonClick() {
 //handles search all users button, only displayed for admin user 
 function handleSearchUsersButton() {
 	$('.js-search-all-users').on('click', function(event) {
-		console.log('hello2');
 		getDataFromUserAPI(displayUserData);
 		$('.js-button-list').hide();
 		$('.js-confirm').hide();
@@ -530,7 +521,6 @@ function handleSignInButtonClick() {
 		$('.js-sign-in').hide();
 		$('.js-sign-up').hide();
 		$('.js-description').hide();
-		console.log('sign in click');
 		$('.js-back').show();
 		$('#js-form').show();
 		displaySignInForm();
@@ -542,7 +532,6 @@ function handleSignInButtonClick() {
 //handles submit button for the form
 function handleSignUpButtonClick() {
 	$('.js-sign-up').on('click', function(event) {
-		console.log('sign up click');
 		$('.js-copyright').hide();
 		$('.js-description').hide();
 		$('.js-sign-up').hide();
